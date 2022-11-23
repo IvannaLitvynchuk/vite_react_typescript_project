@@ -32,6 +32,8 @@ export function ShoppingCartProvider({ children } :
         const [isOpen, setIsOpen] = useState(false)
         const [cartItems, setCartItems] = useState<CartItem[]>([])
 
+        const openCart = () => setIsOpen(true)
+        const closeCart = () => setIsOpen(false)
         const cartQuantity = cartItems.reduce(
             (quantity, item) => item.quantity + quantity, 0
         )
@@ -85,11 +87,14 @@ export function ShoppingCartProvider({ children } :
                     increaseCartQuantity, 
                     decreaseCartQuantity, 
                     removeFromCart,
+                    openCart,
+                    closeCart,
                     cartItems,
                     cartQuantity
                 }}
             >
                 {children}
+            <ShoppingCard />
             </ShoppingCartContext.Provider>
         )
     }
